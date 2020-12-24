@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartTileScript : MonoBehaviour
+public class StartTileModifierScript : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

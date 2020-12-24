@@ -90,8 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb7302127e534cd1a163a442aa85984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hoverOffset: {x: 0, y: 0.35, z: 0}
-  _hoverTime: 1
+  HoverOffset: {x: 0, y: 0.3, z: 0}
+  HoverTime: 1
+  Delay: 0
 --- !u!1 &404657628043078898
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,13 +150,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098294243291134836}
-  m_LocalRotation: {x: 0.13052616, y: -0, z: -0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 3, z: -5}
+  m_LocalRotation: {x: 0.043619405, y: 0, z: 0, w: 0.9990483}
+  m_LocalPosition: {x: 0, y: 2.2, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404657627570201976}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5, y: 0, z: 0}
 --- !u!20 &6567936563483076938
 Camera:
   m_ObjectHideFlags: 0
@@ -231,13 +232,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3619939334623444735}
-  m_LocalRotation: {x: 0.12668772, y: 0.03142128, z: -0.2386684, w: 0.9622891}
-  m_LocalPosition: {x: 0.063, y: 0.055, z: -0.01}
+  m_LocalRotation: {x: 0, y: 0, z: -0.24072786, w: 0.9705926}
+  m_LocalPosition: {x: 0.063, y: 0.055, z: -0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404657628043078897}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 15, y: 0, z: -27.859001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -27.859001}
 --- !u!212 &8528595057707886198
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -312,13 +313,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8374360430964182069}
-  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 0.08, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.08, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404657628043078897}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5129938493003881366
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -47,6 +47,6 @@ TagManager:
   - name: Tile
     uniqueID: 2213628883
     locked: 0
-  - name: Character
+  - name: Characters_Items
     uniqueID: 2946078751
     locked: 0

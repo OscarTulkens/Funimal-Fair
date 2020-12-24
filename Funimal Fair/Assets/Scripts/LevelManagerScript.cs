@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class LevelManagerScript : MonoBehaviour
 {
-    [SerializeField] private GameObject _playerPrefab;
-    private GameObject _startTile;
-    private GameObject _player;
+    [SerializeField] private GameObject _playerPrefab = null;
+    private GameObject _startTile = null;
+    private GameObject _player = null;
+    private bool _movingAllowed = true;
+
+    static public LevelManagerScript instance = null;
 
     private void Awake()
     {
+        SetSingleton();
         FindStartTile();
         InstantiatePlayer();
     }
@@ -28,12 +32,27 @@ public class LevelManagerScript : MonoBehaviour
 
     private void FindStartTile()
     {
-        _startTile = GameObject.FindObjectOfType<StartTileScript>().gameObject;
+        _startTile = GameObject.FindObjectOfType<StartTileModifierScript>().gameObject;
     }
 
     private void InstantiatePlayer()
     {
         _player = Instantiate(_playerPrefab, _startTile.transform.position, Quaternion.identity);
         _player.GetComponent<PlayerControllerScript>().SetCurrentTile(_startTile.GetComponent<BaseTileScript>());
+    }
+
+    private void SetSingleton()
+    {
+        instance = this;
+    }
+
+    public void ToggleMoving()
+    {
+        _movingAllowed = !_movingAllowed;
+    }
+
+    public bool CheckMovementBool()
+    {
+        return _movingAllowed;
     }
 }

@@ -6,7 +6,7 @@ public class RotateScript : MonoBehaviour
 {
     [SerializeField] private RotationAxis _rotationAxis = RotationAxis.X;
     [SerializeField] private float _rotationSpeed = 0;
-    [SerializeField] private bool _keepChildGlobalRotation;
+    [SerializeField] private bool _keepChildGlobalRotation = false;
     [SerializeField] private List<Transform> _childrenToRotate = new List<Transform>();
     private List<Vector3> _childrenStartRotation = new List<Vector3>();
     private Vector3 _rotationAxisVar = Vector3.zero;

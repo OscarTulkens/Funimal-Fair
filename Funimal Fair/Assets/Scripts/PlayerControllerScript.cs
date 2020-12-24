@@ -33,10 +33,12 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void ManageMovePlayer()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && LevelManagerScript.instance.CheckMovementBool())
         {
+            _currentTile.StartExitTileModifiers();
             MoveToNextTile();
             SetCurrentTile(_currentTile.NextTile);
+            _currentTile.StartEnterTileModifiers();
         }
     }
 
