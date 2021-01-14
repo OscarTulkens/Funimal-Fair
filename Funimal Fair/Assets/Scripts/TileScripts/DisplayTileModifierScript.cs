@@ -56,13 +56,35 @@ public class DisplayTileModifierScript : TileModifierScript
 
     private void RemoveDisplay(int index)
     {
+        _so_ItemsOnDisplay.RemoveAt(index);
+        DestroyDisplayItem(index);
+        _gameobjectItemsOnDisplay.RemoveAt(index);
+    }
 
+    private void DestroyDisplayItem(int index)
+    {
+        Destroy(_gameobjectItemsOnDisplay[index]);
     }
 
     private void UpdateDisplay()
     {
 
     }
+
+    //private void ClearNullValues()
+    //{
+    //    for (int i = _so_ItemsOnDisplay.Count-1; i >= 0; i--)
+    //    {
+    //        if (_so_ItemsOnDisplay[i] == null)
+    //        {
+    //            _so_ItemsOnDisplay.RemoveAt(
+    //        }
+    //    }
+    //    for (int i = _gameobjectItemsOnDisplay.Count - 1; i >= 0; i--)
+    //    {
+
+    //    }
+    //}
 
     public override void EnterTile()
     {

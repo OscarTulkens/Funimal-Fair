@@ -7,6 +7,7 @@ public class CoinTileModifierScript : TileModifierScript
 {
     private DisplayTileModifierScript _displayTileModifier = null;
     [SerializeField] private SO_Item _coin = null;
+    private int _displayID = 0;
     private new void Start()
     {
         base.Start();
@@ -17,6 +18,7 @@ public class CoinTileModifierScript : TileModifierScript
 
     public override void EnterTile()
     {
+        RemoveFromDisplayTileModifier();
         EndEnterTileModifier();
     }
 
@@ -29,13 +31,13 @@ public class CoinTileModifierScript : TileModifierScript
     {
         if (CheckDisplayTileModifier())
         {
-            _displayTileModifier.AddItem(_coin);
+            _displayID = _displayTileModifier.AddItem(_coin);
         }
     }
 
     private void RemoveFromDisplayTileModifier()
     {
-
+        _displayTileModifier.RemoveItem(_displayID);
     }
 
     private bool CheckDisplayTileModifier()
