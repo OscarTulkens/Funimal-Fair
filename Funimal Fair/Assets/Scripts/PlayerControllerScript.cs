@@ -8,12 +8,6 @@ public class PlayerControllerScript : MonoBehaviour
     private BaseTileScript _currentTile = null;
     private List<int> _ongoingTweens = new List<int>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

@@ -23,25 +23,35 @@ public class DisplayTileModifierScript : TileModifierScript
 
     public int AddItem(SO_Item item)
     {
+        return AddItem(item, 1);
+    }
+
+    public int AddItem(SO_Item item, int amount)
+    {
         _so_ItemsOnDisplay.Add(item);
-        AddDisplay(item);
-        return _so_ItemsOnDisplay.Count - 1;
+        AddDisplay(item, amount);
+        return (_so_ItemsOnDisplay.Count - 1);
     }
 
     public SO_Item RemoveItem(int index)
     {
         SO_Item tempItem = _so_ItemsOnDisplay[index];
-        _so_ItemsOnDisplay.RemoveAt(index);
+        _so_ItemsOnDisplay[index] = null;
+        RemoveDisplay(index);
         return tempItem;
     }
 
-    private void AddDisplay(SO_Item item)
+    private void AddDisplay(SO_Item item, int amount)
     {
-        GameObject tempGameObject = new GameObject(item.name, typeof(SpriteRenderer), typeof(HoverScript));
+        //Rework this code to use DISPLAYSCRIPT en DISPLAYPREFAB
+        //Add code to adjust amount (overloading additem method?)
+
+        GameObject tempGameObject = Instantiate(LevelManagerScript.instance.DisplayPrefab);
         HoverScript hoverScript = tempGameObject.GetComponent<HoverScript>();
-        SpriteRenderer spriteRender = tempGameObject.GetComponent<SpriteRenderer>();
-        spriteRender.sprite = item.Image;
-        spriteRender.sortingLayerName = "Characters_Items";
+        DisplayScript displayScript = tempGameObject.GetComponent<DisplayScript>();
+
+        displayScript.SetImage(item.Image);
+        displayScript.SetAmount(amount);
 
         hoverScript.HoverOffset = new Vector3(0, 0.20f, 0);
         hoverScript.HoverTime = _hoverTime;
@@ -56,9 +66,10 @@ public class DisplayTileModifierScript : TileModifierScript
 
     private void RemoveDisplay(int index)
     {
-        _so_ItemsOnDisplay.RemoveAt(index);
-        DestroyDisplayItem(index);
-        _gameobjectItemsOnDisplay.RemoveAt(index);
+        //_gameobjectItemsOnDisplay[index].GetComponent<HoverScript>().StopHover();
+        LeanTween.moveLocalY(_gameobjectItemsOnDisplay[index], 0.4f, 0.5f + (index*0.1f)).setEaseInQuad().setDelay(1 + (_delay * index));
+        LeanTween.scale(_gameobjectItemsOnDisplay[index], Vector3.zero, 0.35f).setDelay(1.05f + ((0.1f*index) + _delay * index)).setEaseInBack().setOnComplete((obj) => DestroyDisplayItem(index));
+
     }
 
     private void DestroyDisplayItem(int index)
@@ -93,7 +104,7 @@ public class DisplayTileModifierScript : TileModifierScript
 
     public override void ExitTile()
     {
-        MoveDisplayDown();
+        //MoveDisplayDown();
     }
 
     private void MoveDisplayUp()
@@ -102,7 +113,7 @@ public class DisplayTileModifierScript : TileModifierScript
         {
             int tempint = i;
             _gameobjectItemsOnDisplay[i].GetComponent<HoverScript>().StopHover();
-            LeanTween.moveLocalY(_gameobjectItemsOnDisplay[i], _displayStartOffset + (i * _displayHeight) + 1f, 0.75f).setEaseOutSine().setDelay((_gameobjectItemsOnDisplay.Count-1-i) * _moveDisplayDelay).setOnComplete((obj) => DisplayStartHoverUp(tempint));
+            LeanTween.moveLocalY(_gameobjectItemsOnDisplay[i], _displayStartOffset + (i * _displayHeight) + 1f, 0.75f).setEaseOutSine().setDelay((_gameobjectItemsOnDisplay.Count-1-i) * _moveDisplayDelay)/*.setOnComplete((obj) => DisplayStartHoverUp(tempint))*/;
         }
         EndEnterTileModifier();
     }
@@ -119,7 +130,6 @@ public class DisplayTileModifierScript : TileModifierScript
 
     private void DisplayStartHoverUp(int index)
     {
-        Debug.Log(index);
         _gameobjectItemsOnDisplay[index].GetComponent<HoverScript>().StartHover(transform.position + new Vector3(0, _displayStartOffset + (index * _displayHeight) + 1, 0), (index*_moveDisplayDelay) + (index*_delay));
     }
 

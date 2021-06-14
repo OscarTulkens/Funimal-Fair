@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class LevelManagerScript : MonoBehaviour
 {
+    [Header("LEVEL RESOURCES")]
     [SerializeField] private GameObject _playerPrefab = null;
+    [SerializeField] private SO_Item _coinItem = null;
+    [SerializeField] private GameObject _displayPrefab = null;
+
     private GameObject _startTile = null;
     private GameObject _player = null;
     private bool _movingAllowed = true;
+
+    public GameObject Player { get { return _player; } }
+    public SO_Item CoinItem { get { return _coinItem; } }
+    public GameObject DisplayPrefab { get { return _displayPrefab; } }
 
     static public LevelManagerScript instance = null;
 
@@ -16,18 +24,6 @@ public class LevelManagerScript : MonoBehaviour
         SetSingleton();
         FindStartTile();
         InstantiatePlayer();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void FindStartTile()
