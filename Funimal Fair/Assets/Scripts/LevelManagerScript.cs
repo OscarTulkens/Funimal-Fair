@@ -46,6 +46,10 @@ public class LevelManagerScript : MonoBehaviour
     {
         _movingAllowed = !_movingAllowed;
     }
+    public void ToggleMoving(bool isMoving)
+    {
+        _movingAllowed = isMoving;
+    }
 
     public bool CheckMovementBool()
     {

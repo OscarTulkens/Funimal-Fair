@@ -17,8 +17,9 @@ public class BaseTileScript : MonoBehaviour
     public void StartEnterTileModifiers()
     {
         _currentEnterModifier = 0;
+        LevelManagerScript.instance.ToggleMoving(false);
         DoEnterTileModifier();
-        LevelManagerScript.instance.ToggleMoving();
+
     }
 
     public void ContinueEnterTileModifiers()
@@ -29,13 +30,13 @@ public class BaseTileScript : MonoBehaviour
 
     private void DoEnterTileModifier()
     {
-        if (TileModifiers.Count > _currentEnterModifier)
+        if (_currentEnterModifier< TileModifiers.Count)
         {
             TileModifiers[_currentEnterModifier].EnterTile();
         }
         else
         {
-            LevelManagerScript.instance.ToggleMoving();
+            LevelManagerScript.instance.ToggleMoving(true);
         }
     }
 
