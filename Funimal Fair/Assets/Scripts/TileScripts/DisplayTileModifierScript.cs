@@ -74,7 +74,7 @@ public class DisplayTileModifierScript : TileModifierScript
     {
         //_gameobjectItemsOnDisplay[index].GetComponent<HoverScript>().StopHover();
         LeanTween.moveLocalY(_gameobjectItemsOnDisplay[index], 0.4f, 0.5f + (index*0.1f)).setEaseInQuad().setDelay(1 + (_delay * index));
-        LeanTween.scale(_gameobjectItemsOnDisplay[index], Vector3.zero, 0.35f).setDelay(1.05f + ((0.1f*index) + _delay * index)).setEaseInBack();
+        LeanTween.scale(_gameobjectItemsOnDisplay[index], Vector3.zero, 0.35f).setDelay(1.05f + ((0.1f*index) + _delay * index)).setEaseInBack().setOnComplete(() => EventManagerScript.instance.AddItemToInventory(_so_ItemsOnDisplay[index], _gameobjectItemsOnDisplay[index].GetComponent<DisplayScript>().GetAmount()));
     }
 
     public void DestroyDisplayItem(int index)

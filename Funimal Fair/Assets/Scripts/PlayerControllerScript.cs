@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerControllerScript : MonoBehaviour
 {
-    [SerializeField] private float _movementSpeed;
+    [SerializeField] private float _movementSpeed = 0;
     private BaseTileScript _currentTile = null;
     private List<int> _ongoingTweens = new List<int>();
 
